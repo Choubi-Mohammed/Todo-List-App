@@ -5,9 +5,12 @@ const { default: mongoose, model } = require("mongoose");
 const Todoschema= new mongoose.Schema({
     id:{
         type:Number,
-        required:true,
     },
     title:{
+        type:String,
+        required:true,
+    },
+    description:{
         type:String,
         required:true,
     },

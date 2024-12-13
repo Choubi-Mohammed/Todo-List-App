@@ -11,9 +11,11 @@ exports.getAlltodos=asynchandler(async (req,res)=>{
     }
 })
 exports.addTodo=asynchandler(async (req,res)=>{
+    const count = await Todos.countDocuments();
     const newtodos=new Todos({
-        id:req.body.id,
+        id: count + 1,
         title:req.body.title,
+        description:req.body.description,
         iscomplete:req.body.iscomplete,
     })
     const result= await newtodos.save()
@@ -23,6 +25,7 @@ exports.updatebyId=asynchandler(async (req,res)=>{
     const todo_id=req.params.id
     const todo=await Todos.findOneAndUpdate({id:todo_id},{
         title:req.body.title,
+        description:req.body.description,
         iscomplete:req.body.iscomplete,
     },{new:true})
 if(todo){
